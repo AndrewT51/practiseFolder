@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body ng-controller='mainCtrl'>
+<div class="row">
+	<form role="form" class='col-xs-6 col-xs-offset-3' action='http://localhost:3000/addPerson' method='post'>
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<input type="text" class="form-control" ng-model='form.name'>
+		</div>
+		<div class="form-group">
+			<label for="pwd">Email:</label>
+			<input type="text" class="form-control" ng-model='form.email'>
+		</div>
+		<div class="form-group">
+			<label for="pwd">Age:</label>
+			<input type="number" class="form-control" ng-model='form.age'>
+		</div>
+		
+	
+		<br/>
+		<br/>
+		<button type="button" class="btn btn-default" ng-click='sub(form)'>Submit</button>
+		<button type="button" class="btn btn-default" ng-click='collect()'>Get info</button>
+	</form>
+	</div>
+	<br>
+	<div>
+		<table class="table table-striped col-xs-10 col-xs-offset-1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='person in listOfPeople'>
+        <td>{{person.name}}</td>
+        <td>{{person.age}}</td>
+        <td>{{person.email}}</td>
+        <!-- <td>{{person._id}}</td> -->
+        <td><button ng-click="remove(person._id)">Remove</button><button ng-click="edit(person._id)">Edit</button></td>
+ 
+      </tr>
+    
+    </tbody>
+  </table>
+	</div>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

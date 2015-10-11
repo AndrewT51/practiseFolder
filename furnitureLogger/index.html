@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Bootstrap 101 Template</title>
+
+  </head>
+  <body >
+    <div class="container">
+  	<div ng-controller='MainCtrl'>
+    	<br/>
+    	<div class="row well">
+    		<div class="col-xs-10 col-xs-offset-1">
+    			<input type="text" ng-model='room' placeholder='Add room'>
+    			<button ng-click='addRoom(room)'>Submit</button>
+    			{{main.room}}
+    		</div>
+    	</div>
+
+
+    	<div class="row well">
+    		<div class="col-xs-10 col-xs-offset-1">
+    			<input type="text" placeholder='Item' ng-model='item.name'>
+    			<input type="number" placeholder='Quantity' ng-model='item.quantity'>
+    			<input type="number" placeholder='Cost' ng-model='item.cost'>
+    			<select ng-model='whichRoom'>
+    				<option value="" disabled selected> ---- Select Room ---- </option>
+    				<option  ng-repeat='room in rooms track by $index' >	{{room}}</option>
+    			</select>
+    			<button ng-click='addToRoom(item)'>Submit</button>
+    		</div>
+    	</div>
+
+
+
+    	</div>
+    	<div ng-controller='SecondCtrl'>
+        	<div class="row well">
+        		<div class="col-xs-10 col-xs-offset-1">
+        			<label for="roomChoice">Which room would you like to view? : </label>
+        			<select ng-model='roomChoice'>
+        				<option value="" disabled selected> ------ Select ------ </option>
+        				<option ng-repeat='room in rooms track by $index' >	{{room}}</option>
+        			</select>
+        		</div>
+        	</div>
+        	<div class="row">
+    	    	<table>
+    				<tr>
+    	    		<th class='col-xs-2'>Room</th>
+    	    		<th class='col-xs-2'>Item</th>
+    	    		<th class='col-xs-2'>Quantity</th>
+    	    		<th class='col-xs-2'>Cost each</th>
+    	    		<th class='col-xs-2'>Total cost</th>	
+    	    	</tr>
+    	    	<tr ng-repeat='thing in rooms track by $index'>
+    	    		<td class='col-xs-2'>{{roomChoice}}</td>
+    	    	<!-- 	<td class='col-xs-2'>{{thing.name}}</td>
+    	    		<td class='col-xs-2'>{{thing.quantity}}</td>
+    	    		<td class='col-xs-2'>{{thing.cost}}</td>
+ -->    	    		<td ng-repeat='key in thing track by $index'>{{key}}</td>
+    	    	</tr>
+    	    	</table>
+    	    </div>
+
+    	</div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

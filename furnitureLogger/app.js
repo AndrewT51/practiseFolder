@@ -8,7 +8,7 @@ myApp.controller('MainCtrl', function($scope,shareDataService){
 
 	$scope.addRoom = function(room){
 		$scope.rooms.push(room);
-		shareDataService.addList(room);
+		// shareDataService.addList(room);
 		$scope.room = '';
 	}
 
@@ -18,32 +18,49 @@ myApp.controller('MainCtrl', function($scope,shareDataService){
 		}
 		$scope.roomObj[$scope.whichRoom].push(item);
 		for (var i = 0; i < $scope.roomObj[$scope.whichRoom].length; i++){
-			console.log($scope.roomObj[$scope.whichRoom][i])
+			// console.log($scope.roomObj[$scope.whichRoom][i])
 		}
+    shareDataService.sharedObj = $scope.roomObj;
+    console.log($scope.roomObj + 'Object')
+    debugger;
 
 	}
 })
 
 myApp.controller('SecondCtrl',function($scope,shareDataService){
-	$scope.rooms = shareDataService.getList();
+  $scope.changeRoom = function(){
+    console.log('Blah' + shareDataService.sharedObj);
+  	$scope.rooms = shareDataService.sharedObj;
+    
+  }
 	console.log($scope.rooms);
 
 	
 })
 
 myApp.service('shareDataService', function() {
-    var theList = [];
+    var sharedObj;
+    console.log('PreList');
 
-    var addList = function(newObj) {
-        theList.push(newObj);
+    // var writeUpdate= function(updatedObj){
+    //   sharedObj=updatedObj;
+    //   return sharedObj;
+
+    // }
+
+    // var addList = function(newObj) {
+    //     theList.push(newObj);
+    //     console.log("THE LIST:" + theList)
+    // }
+
+    var getUpdate = function(){
+      // console.log('GetList')
+        return sharedObj;
     }
+    return sharedObj;
 
-    var getList = function(){
-        return theList;
-    }
-
-    return {
-        addList: addList,
-        getList: getList
-    };
+    // return {
+    //     addList: addList,
+    //     getList: getList
+    // };
 });
